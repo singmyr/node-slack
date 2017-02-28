@@ -1,27 +1,26 @@
 {
-  "name": "slackish",
+  "name": "node-slack",
   "version": "1.0.0",
-  "description": "Slack package for Node.",
+  "description": "Lightweight Slack package for Node.",
   "main": "index.js",
   "scripts": {
     "test": "make test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/singmyr/node-slackish.git"
+    "url": "git+https://github.com/singmyr/node-slack.git"
   },
   "keywords": [
     "Slack",
-    "Slackish",
     "Node",
     "Communication"
   ],
   "author": "Mattias Singmyr <mattias@singmyr.io> (http://singmyr.io)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/singmyr/node-slackish/issues"
+    "url": "https://github.com/singmyr/node-slack/issues"
   },
-  "homepage": "https://github.com/singmyr/node-slackish#readme",
+  "homepage": "https://github.com/singmyr/node-slack#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
