@@ -4,13 +4,13 @@ Slackish
 A lightweight module providing the functionality to send messages to Slack.
 
 ## Installation
-`npm install slackish`
+`npm install slackless`
 
 ## Usage
 
 ### Initialization
 ```javascript
-var slack = require('slackish')('https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX');
+var slack = require('slackless')('https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX');
 ```
 
 The URL that you need to input is acquired when setting up *incoming webhooks* for your Slack domain.

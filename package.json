@@ -1,5 +1,5 @@
 {
-  "name": "node-slack",
+  "name": "slackless",
   "version": "1.0.0",
   "description": "Lightweight Slack package for Node.",
   "main": "index.js",
@@ -8,19 +8,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/singmyr/node-slack.git"
+    "url": "git+https://github.com/singmyr/node-slackless.git"
   },
   "keywords": [
     "Slack",
+	"Slackless",
     "Node",
     "Communication"
   ],
   "author": "Mattias Singmyr <mattias@singmyr.io> (http://singmyr.io)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/singmyr/node-slack/issues"
+    "url": "https://github.com/singmyr/node-slackless/issues"
   },
-  "homepage": "https://github.com/singmyr/node-slack#readme",
+  "homepage": "https://github.com/singmyr/node-slackless#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0"

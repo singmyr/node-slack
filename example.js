@@ -1,13 +1,13 @@
-var slack = require('slackish')('https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX');
+var slack = require('slackless')('https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX');
 
-slack.setUsername('teeest');
+slack.setUsername('B0T');
 slack.setIcon('ghost');
 
 slack.send({
 	text: 'Test message.',
 	icon_emoji: 'banana',
 	username: 'B0T',
-	channel: '#wtf',
+	channel: '#general',
 	attachments: [
         {
             "fallback": "Required plain-text summary of the attachment.",

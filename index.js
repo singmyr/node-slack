@@ -43,7 +43,7 @@ var _host = 'hooks.slack.com';
 var _path = null;
 
 var _headers = {
-	'User-Agent': 'Singmyr/Slack-Node @ 1.0.0',
+	'User-Agent': 'Singmyr/Node-Slackless @ 1.0.0',
 	'Content-Type': 'application/json'
 };
 
