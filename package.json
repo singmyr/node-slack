@@ -1,6 +1,6 @@
 {
   "name": "slackless",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight Slack package for Node.",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/singmyr/node-slackless#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "chai": "3.5.0",
+    "mocha": "3.2.0"
   }
 }

@@ -25,6 +25,10 @@ slack.setChannel('general');
 
 ### Send message
 ```javascript
+slack.send('Test message.');
+```
+or
+```javascript
 slack.send({
 	text: 'Test message.'
 });
@@ -77,4 +81,8 @@ slack.send({
 
 ## Release History
 
-* `1.0.0` - *2017-02-28* - **Initial release**
+* `1.0.1` - *2017-02-29*
+> Updated error handling.  
+> Fixed a bug when icon wasn't set.
+* `1.0.0` - *2017-02-28*
+> **Initial release**

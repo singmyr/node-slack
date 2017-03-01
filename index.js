@@ -43,12 +43,12 @@ var _host = 'hooks.slack.com';
 var _path = null;
 
 var _headers = {
-	'User-Agent': 'Singmyr/Node-Slackless @ 1.0.0',
+	'User-Agent': 'Singmyr/Node-Slackless @ 1.0.1',
 	'Content-Type': 'application/json'
 };
 
 var _username = null;
-var _icon = null;
+var _icon_emoji = null;
 var _link_names = true;
 var _channel = null;
 
@@ -76,7 +76,7 @@ slack.setChannel = function(channel) {
 slack.send = function(data) {
 	// Check if both _url and _path has valid values.
 	if(!_host || !_path) {
-		return false;
+		throw Error('Missing URL.');
 	}
 
 	// Define the body for the request.
@@ -84,35 +84,58 @@ slack.send = function(data) {
 		link_names: _link_names
 	};
 
-	// Set the text if it was provided.
-	if(data.text !== undefined) {
-		body.text = data.text;
-	}
-
-	// Check if the username was set in data, else use the "global" one.
-	if(data.username !== undefined) {
-		body.username = data.username;
-	} else if(_username !== null) {
+	// Set the global options.
+	if(_username !== null) {
 		body.username = _username;
 	}
 
-	// Check if the icon was set in data, else use the "global" one.
-	if(data.icon_emoji !== undefined) {
-		// todo: Strip white spaces and :.
-		body.icon_emoji = ':'+data.icon_emoji+':';
-	} else if(_icon_emoji !== null) {
+	if(_icon_emoji !== null) {
 		body.icon_emoji = ':'+_icon_emoji+':';
 	}
 
-	// Check if the channel was set in data, else use the "global" one.
-	if(data.channel !== undefined) {
-		body.channel = data.channel;
-	} else if(_channel !== null) {
+	if(_channel !== null) {
 		body.channel = _channel;
 	}
 
-	if(data.attachments !== undefined) {
-		body.attachments = data.attachments;
+	// If data is a string, assume it's only text.
+	if(typeof data === 'string') {
+		if(data.length === 0) {
+			throw Error('String cannot be empty.');
+		}
+
+		body.text = data;
+	} else if(data && typeof data === 'object' && data.constructor === Object) {
+		// It's an object! Lets see what we got.
+
+		// Check to see if the object actually contains anything.
+		if(!Object.keys(data).length) {
+			throw Error('Object cannot be empty.');
+		}
+		
+		// Set the text if it was provided.
+		if(data.text !== undefined) {
+			body.text = data.text;
+		}
+
+		// Override the global settings if it was set in data.
+		if(data.username !== undefined) {
+			body.username = data.username;
+		}
+
+		if(data.icon_emoji !== undefined) {
+			// todo: Strip white spaces and :.
+			body.icon_emoji = ':'+data.icon_emoji+':';
+		}
+
+		if(data.channel !== undefined) {
+			body.channel = data.channel;
+		}
+
+		if(data.attachments !== undefined) {
+			body.attachments = data.attachments;
+		}
+	} else {
+		throw Error('Invalid type on data. Must be either object or string.');
 	}
 
 	// Turn the body into JSON.
@@ -169,20 +192,6 @@ function setURL(url) {
 
 			return true;
 		}
-	} else if(typeof url === 'object') {
-		// Verify that url contains all parameters needed.
-		if(!url.t || !url.b || !url.x) {
-			return false;
-		}
-
-		// Verify the length of all the parameters.
-		if(url.t.length !== 9 || url.b.length !== 9 || url.x.length !== 24) {
-			return false;
-		}
-		
-		_path = '/services/'+url.t+'/'+url.b+'/'+url.x;
-
-		return true;
 	}
 
 	return false;
@@ -190,6 +199,7 @@ function setURL(url) {
 
 module.exports = function(url) {
 	if(url === undefined || url === null) {
+		// Check if we can find an URL in the environment files.
 		throw Error('URL is required.');
 	}
 
